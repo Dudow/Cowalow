@@ -15,7 +15,10 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "import/no-unresolved": "error"
+    "import/no-unresolved": "error",
+    "arrow-parens": ["warn", "always"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }]
   },
   "settings": {
     "import/resolver": {
