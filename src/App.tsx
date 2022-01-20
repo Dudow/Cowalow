@@ -1,18 +1,17 @@
-import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import Form from './components/form';
+
 import './App.css';
 
-import Button from './components/button';
-import Input from './components/input';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Button>2522</Button>
-        <Input />
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <ToastContainer />
+    <header className="App-header">
+      <Form />
+    </header>
+  </div>
+);
 
 export default App;
