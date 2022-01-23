@@ -7,10 +7,11 @@ interface IFlexProps {
 }
 
 const Flex = styled.div<IFlexProps>`
-  width: ${(props) => props.width};
+  width: 100%;
   display: flex;
   flex-direction: ${(props) => props.direction};
   justify-content: ${(props) => props.justifyContent};
+  flex-wrap: wrap;
 `;
 
 export default Flex;

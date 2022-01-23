@@ -23,10 +23,10 @@ const Form: React.FC<IFormProps> = () => {
     if (data) formRef.current?.setData(JSON.parse(data));
   }, []);
 
-  const handleSubmit = async (data: any, { reset }: any) => {
+  const handleSubmit = async () => {
     setSubmitting(true);
 
-    await Validation(formRef, reset).then((res) => {
+    await Validation(formRef).then((res) => {
       ShowToast(res);
     });
 
@@ -34,7 +34,11 @@ const Form: React.FC<IFormProps> = () => {
   };
 
   const handleReset = () => {
-    if (formRef.current) formRef.current.reset();
+    if (!localStorage.getItem('user')) {
+      ShowToast({ message: 'No storage data to remove!', status: 'warn' });
+    }
+
+    formRef.current?.reset();
 
     localStorage.removeItem('user');
 
@@ -43,7 +47,11 @@ const Form: React.FC<IFormProps> = () => {
 
   const handleSearch = async () => {
     const ipData = formRef.current?.getFieldValue('ip');
-    if (ipData) return;
+
+    if (ipData) {
+      ShowToast({ message: 'IP already set!', status: 'warn' });
+      return;
+    }
 
     setSearching(true);
 
@@ -55,11 +63,17 @@ const Form: React.FC<IFormProps> = () => {
   return (
     <FormBase onSubmit={handleSubmit} ref={formRef}>
       <Flex>
-        <Input name="name" placeholder="Name" />
+        <Input name="name" placeholder="Name" autoComplete="off" />
       </Flex>
       <Flex>
-        <Input name="profession" placeholder="Profession" />
-        <Input name="phone" mask="(99) 99999-9999" placeholder="Phone" />
+        <Input name="profession" placeholder="Profession" autoComplete="off" />
+        <Input
+          name="phone"
+          mask="(99) 99999-9999"
+          placeholder="Phone"
+          autoComplete="off"
+          type="tel"
+        />
       </Flex>
       <Flex>
         <Input name="ip" placeholder="IP" readOnly />
