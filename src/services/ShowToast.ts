@@ -8,9 +8,7 @@ interface IShowToastProps {
 const ShowToast = ({ message, status }: IShowToastProps) => {
   const toastConfig = {
     position: toast.POSITION.TOP_RIGHT,
-    className: 'toast-error',
-    progressClassName: 'error-progress-bar',
-    autoClose: 4000,
+    autoClose: 2000,
     toastId: 2,
   };
 
