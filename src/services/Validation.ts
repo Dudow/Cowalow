@@ -8,17 +8,15 @@ interface IValidationReturn {
 
 const Validation = async (
   formRef: React.RefObject<FormHandles>,
-  reset: any,
 ): Promise<IValidationReturn> => {
   try {
     if (!formRef.current) {
       return {
-        message: 'Something went wrong',
+        message: 'Something went wrong!',
         status: 'error',
       };
     }
 
-    formRef.current.setErrors({});
     const data = formRef.current.getData();
 
     const schema = Yup.object().shape({
@@ -39,12 +37,15 @@ const Validation = async (
     });
 
     localStorage.setItem('user', JSON.stringify(data));
-    reset();
+
+    formRef.current.reset();
+
     return {
       message: 'Success',
       status: 'success',
     };
   } catch (err) {
+    console.log(err);
     if (err instanceof Yup.ValidationError) {
       return {
         message: err.message,
@@ -54,7 +55,7 @@ const Validation = async (
   }
 
   return {
-    message: 'Something went wrong',
+    message: 'Something went wrong!',
     status: 'error',
   };
 };
