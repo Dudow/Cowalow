@@ -10,7 +10,7 @@ const Input = styled.input`
   padding: 1rem 1.5rem;
   transition: 0.2s;
   outline: 0;
-  flex: 1;
+  flex: 2;
 
   &:focus {
     background: rgba(148, 160, 212, 0.2);
